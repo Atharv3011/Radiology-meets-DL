@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sample X-ray Generator</title>
+</head>
+<body>
+    <h2>Generate Sample X-ray for Testing</h2>
+    <canvas id="canvas" width="400" height="400" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="generateXray()">Generate Sample X-ray</button>
+    <button onclick="downloadImage()">Download as PNG</button>
+    
+    <script>
+        function generateXray() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, 400, 400);
+            
+            // Draw bone-like structures
+            ctx.fillStyle = '#888';
+            
+            // Main bone shaft
+            ctx.fillRect(150, 50, 100, 300);
+            
+            // Joint areas
+            ctx.fillRect(120, 40, 160, 30);
+            ctx.fillRect(120, 340, 160, 30);
+            
+            // Add some texture
+            for(let i = 0; i < 50; i++) {
+                ctx.fillStyle = `rgba(150, 150, 150, ${Math.random() * 0.3})`;
+                ctx.fillRect(
+                    Math.random() * 400,
+                    Math.random() * 400,
+                    Math.random() * 20,
+                    Math.random() * 20
+                );
+            }
+            
+            // Simulate a small fracture line
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(180, 200);
+            ctx.lineTo(220, 210);
+            ctx.stroke();
+        }
+        
+        function downloadImage() {
+            const canvas = document.getElementById('canvas');
+            const link = document.createElement('a');
+            link.download = 'sample_xray.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Generate on load
+        generateXray();
+    </script>
+</body>
+</html>

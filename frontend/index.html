@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bone Fracture Detection | AI-Powered Diagnosis</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-bone me-2"></i> FractureDetect 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-3">Bone Fracture Detection</h1>
+            <p class="lead mb-4">Instant X-ray Analysis for Fractures</p>
+            <div class="d-flex justify-content-center gap-3">
+                <button class="btn btn-light btn-lg">
+                    <i class="fas fa-play me-2"></i> Watch Demo
+                </button>
+                <button class="btn btn-outline-light btn-lg">
+                    <i class="fas fa-book me-2"></i> Learn More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="upload-container text-center">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3 class="mb-3">Upload Your X-ray Image</h3>
+                    <p class="text-muted mb-4">Supports JPG, PNG, and other common image formats</p>
+                    
+                    <form id="uploadForm">
+                        <div class="mb-3">
+                            <input type="file" class="form-control d-none" id="fileInput" accept="image/*">
+                            <label for="fileInput" class="btn btn-primary btn-lg">
+                                <i class="fas fa-upload me-2"></i> Upload Image
+                            </label>
+                        </div>
+                        <div class="mb-3">
+                            <button type="button" class="btn btn-analyze btn-lg" id="analyzeBtn" disabled>
+                                <i class="fas fa-search me-2"></i> Analyze for Fractures
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div id="imagePreview" class="text-center mb-3">
+                        <img id="previewImage" src="#" alt="Preview" class="preview-image img-fluid">
+                    </div>
+                </div>
+                
+                <div class="result-container" id="resultContainer">
+                    <h4 class="mb-3"><i class="fas fa-clipboard-check me-2"></i> Analysis Results</h4>
+                    <div class="alert alert-success" id="resultMessage">
+                        <strong><i class="fas fa-check-circle me-2"></i> No fractures detected.</strong> The bone structure appears normal.
+                    </div>
+                    <div class="progress mb-3">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95% Confidence</div>
+                    </div>
+                    <!-- <h5 class="mt-4">Detailed Analysis</h5>
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Fracture Detection
+                            <span class="badge bg-success rounded-pill">Negative</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Bone Alignment
+                            <span class="badge bg-success rounded-pill">Normal</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Bone Density
+                            <span class="badge bg-info rounded-pill">Healthy</span>
+                        </li>
+                    </ul> -->
+                    <button class="btn btn-outline-primary">
+                        <i class="fas fa-download me-2"></i> Download Report
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-12 text-center mb-4">
+                <h2 class="fw-bold">Why Choose Our DL Detection System</h2>
+                <p class="text-muted">Advanced technology for accurate and fast fracture detection</p>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h5 class="card-title">Instant Results</h5>
+                        <p class="card-text">Get analysis results in seconds with our powerful AI algorithms.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <h5 class="card-title">Automated Detection</h5>
+                        <p class="card-text">Advanced DL-powered detection for fast, accurate analysis.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card feature-card h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5 class="card-title">Secure & Private</h5>
+                        <p class="card-text">Your medical data is encrypted and never shared without consent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5><i class="fas fa-bone me-2"></i> FractureDetect </h5>
+                    <p class="mt-3">Advanced  technology for accurate and fast bone fracture detection from X-ray images.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Features</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Pricing</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">About</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white">Documentation</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">API</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-white">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for the latest updates.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4 bg-secondary">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2025 FractureDetect . All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">
+                        <a href="#" class="text-white me-3">Privacy Policy</a>
+                        <a href="#" class="text-white">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>

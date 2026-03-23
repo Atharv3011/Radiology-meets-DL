@@ -1,0 +1,57 @@
+# FractureDetect AI Configuration
+project_name: "Bone Fracture Detection System"
+version: "2.0.0"
+author: "Your Name"
+
+model:
+  backbone: "efficientnet-b4"
+  pretrained: true
+  freeze_backbone: true
+  dropout_rate: 0.4
+  img_size: 384
+  batch_size: 16
+  epochs: 50
+  learning_rate: 3e-4
+  weight_decay: 1e-4
+  use_ensemble: true
+
+data:
+  data_dir: "Dataset"
+  train_split: 0.8
+  val_split: 0.2
+  num_workers: 4
+  pin_memory: true
+
+api:
+  host: "0.0.0.0"
+  port: 5000
+  debug: false
+  max_file_size: 10485760  # 10MB
+  generate_gradcam: true
+  # Point to the actual trained model files present in the repo
+  binary_model_path: "backend/binary_fracture_mura_gpu.pth"
+  multiclass_model_path: "backend/multiclass_fracture_gpu.pth"
+
+evaluation:
+  compute_detailed_metrics: true
+  save_confusion_matrix: true
+  save_roc_curves: true
+
+deployment:
+  docker_image: "fracture-detection:latest"
+  min_replicas: 1
+  max_replicas: 5
+
+# Device configuration
+device: "auto"
+use_gpu: true
+random_seed: 42
+deterministic: true
+
+# Logging
+log_level: "INFO"
+log_file: "logs/fracture_detection.log"
+
+# Experiment tracking
+use_wandb: false
+wandb_project: "fracture-detection"

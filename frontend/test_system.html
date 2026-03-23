@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FractureDetect AI - Quick Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #b8daff; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        button:hover { background: #0056b3; }
+        pre { background: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🩻 FractureDetect AI - System Test</h1>
+        
+        <div id="status" class="status info">
+            Ready to test the system...
+        </div>
+        
+        <div>
+            <button onclick="testHealth()">Test Backend Health</button>
+            <button onclick="testInfo()">Test API Info</button>
+            <button onclick="testPrediction()">Test Prediction (Demo)</button>
+            <button onclick="clearResults()">Clear Results</button>
+        </div>
+        
+        <div id="results" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000';
+        
+        function updateStatus(message, type = 'info') {
+            const statusDiv = document.getElementById('status');
+            statusDiv.className = `status ${type}`;
+            statusDiv.innerHTML = message;
+        }
+        
+        function addResult(title, data) {
+            const resultsDiv = document.getElementById('results');
+            const resultHTML = `
+                <div style="margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                    <h3>${title}</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                </div>
+            `;
+            resultsDiv.innerHTML += resultHTML;
+        }
+        
+        async function testHealth() {
+            updateStatus('Testing backend health...', 'info');
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    updateStatus('✅ Backend health check passed!', 'success');
+                    addResult('Health Check Response', data);
+                } else {
+                    updateStatus(`❌ Health check failed: ${response.status}`, 'error');
+                    addResult('Health Check Error', data);
+                }
+            } catch (error) {
+                updateStatus(`❌ Health check failed: ${error.message}`, 'error');
+                addResult('Health Check Error', { error: error.message });
+            }
+        }
+        
+        async function testInfo() {
+            updateStatus('Getting API information...', 'info');
+            try {
+                const response = await fetch(`${API_BASE}/info`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    updateStatus('✅ API info retrieved successfully!', 'success');
+                    addResult('API Information', data);
+                } else {
+                    updateStatus(`❌ API info failed: ${response.status}`, 'error');
+                    addResult('API Info Error', data);
+                }
+            } catch (error) {
+                updateStatus(`❌ API info failed: ${error.message}`, 'error');
+                addResult('API Info Error', { error: error.message });
+            }
+        }
+        
+        async function testPrediction() {
+            updateStatus('Testing prediction with sample data...', 'info');
+            
+            // Create a simple test image (1x1 pixel PNG)
+            const canvas = document.createElement('canvas');
+            canvas.width = 100;
+            canvas.height = 100;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#808080';
+            ctx.fillRect(0, 0, 100, 100);
+            
+            canvas.toBlob(async (blob) => {
+                try {
+                    const formData = new FormData();
+                    formData.append('image', blob, 'test.png');
+                    
+                    const response = await fetch(`${API_BASE}/predict`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        updateStatus('✅ Prediction test completed!', 'success');
+                        addResult('Prediction Response', data);
+                    } else {
+                        updateStatus(`❌ Prediction failed: ${response.status}`, 'error');
+                        addResult('Prediction Error', data);
+                    }
+                } catch (error) {
+                    updateStatus(`❌ Prediction failed: ${error.message}`, 'error');
+                    addResult('Prediction Error', { error: error.message });
+                }
+            }, 'image/png');
+        }
+        
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+            updateStatus('Results cleared. Ready to test again.', 'info');
+        }
+        
+        // Auto-test health on page load
+        window.onload = () => {
+            setTimeout(testHealth, 1000);
+        };
+    </script>
+</body>
+</html>

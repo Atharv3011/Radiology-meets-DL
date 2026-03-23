@@ -1,0 +1,94 @@
+# ===== CORE ML/AI DEPENDENCIES =====
+torch>=2.1.0
+torchvision>=0.16.0
+torchaudio>=2.1.0
+timm>=0.9.7                     # EfficientNet, DenseNet implementations
+efficientnet-pytorch>=0.7.1    # EfficientNet models
+pytorch-lightning>=2.0.0       # Professional ML framework
+transformers>=4.30.0          # Vision transformers
+
+# ===== SCIENTIFIC COMPUTING =====
+numpy>=1.24.0
+pandas>=2.0.0
+scikit-learn>=1.3.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+opencv-python>=4.8.0
+Pillow>=10.0.0
+
+# ===== WEB FRAMEWORK & API =====
+Flask>=2.3.0
+Flask-CORS>=4.0.0
+Flask-SocketIO>=5.3.0
+gunicorn>=21.0.0
+eventlet>=0.33.0
+redis>=4.6.0
+celery>=5.3.0                  # Async task processing
+
+# ===== MEDICAL IMAGE PROCESSING =====
+pydicom>=2.4.0                # DICOM file support
+SimpleITK>=2.3.0              # Medical image processing
+nibabel>=5.1.0                # Neuroimaging formats
+
+
+# ===== MODEL EXPLAINABILITY =====
+grad-cam>=1.4.8               # Gradient-based CAM
+shap>=0.42.0                  # SHAP values
+lime>=0.2.0                   # Local interpretable explanations
+captum>=0.6.0                 # PyTorch interpretability
+
+# ===== EVALUATION & METRICS =====
+torchmetrics>=1.0.0           # Comprehensive metrics
+sklearn-evaluation>=0.9.0     # Advanced evaluation tools
+wandb>=0.15.0                 # Experiment tracking
+tensorboard>=2.13.0           # Visualization
+
+# ===== DATA HANDLING =====
+albumentations>=1.3.0         # Advanced augmentations
+imgaug>=0.4.0                 # Image augmentation
+h5py>=3.9.0                   # HDF5 support
+zarr>=2.16.0                  # Array storage
+dask>=2023.6.0                # Large dataset handling
+
+# ===== UTILITIES =====
+tqdm>=4.65.0                  # Progress bars
+click>=8.1.0                  # CLI interface
+python-dotenv>=1.0.0          # Environment variables
+pyyaml>=6.0                   # YAML parsing
+jsonschema>=4.18.0            # JSON validation
+
+# ===== DEVELOPMENT & TESTING =====
+pytest>=7.4.0                # Testing framework
+pytest-cov>=4.1.0            # Coverage testing
+black>=23.7.0                 # Code formatting
+flake8>=6.0.0                 # Linting
+mypy>=1.5.0                   # Type checking
+pre-commit>=3.3.0             # Git hooks
+
+# ===== DEPLOYMENT =====
+docker>=6.1.0                # Docker SDK
+kubernetes>=27.2.0            # K8s client
+boto3>=1.28.0                 # AWS SDK
+azure-storage-blob>=12.17.0   # Azure blob storage
+google-cloud-storage>=2.10.0  # GCP storage
+
+# ===== MONITORING & LOGGING =====
+prometheus-client>=0.17.0     # Metrics collection
+structlog>=23.1.0             # Structured logging
+sentry-sdk>=1.29.0            # Error tracking
+psutil>=5.9.0                 # System monitoring
+
+# ===== PRODUCTION OPTIMIZATIONS =====
+uvicorn[standard]>=0.23.0     # ASGI server
+fastapi>=0.100.0              # Alternative to Flask
+pydantic>=2.0.0               # Data validation
+httpx>=0.24.0                 # HTTP client
+aiofiles>=23.1.0              # Async file operations
+
+# ===== JUPYTER & NOTEBOOK SUPPORT =====
+jupyter>=1.0.0
+jupyterlab>=4.0.0
+ipywidgets>=8.0.0
+notebook>=7.0.0
